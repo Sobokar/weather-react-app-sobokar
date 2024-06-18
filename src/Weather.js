@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import FormattedDate from "./FormattedDate ";
 import "./Weather.css";
 
 export default function Weather(props) {
@@ -10,10 +11,10 @@ export default function Weather(props) {
       ready: true,
       city: response.data.name,
       description: response.data.weather[0].description,
-      date: "Thursday 16:00",
+      date: new Date(response.data.dt * 1000),
       temperature: response.data.main.temp,
       iconUrl: response.data.weather[0].icon,
-      humidity: response.main.temperature.humidity,
+      humidity: response.data.main.humidity,
       wind: response.data.wind.speed,
     });
   }
@@ -42,9 +43,11 @@ export default function Weather(props) {
         </form>
         <div className="row mb-3">
           <div className="col-6">
-            <h1>{weatherData.main.city}</h1>
+            <h1>{weatherData.city}</h1>
             <ul class="list-unstyled">
-              <li>{weatherData.date}</li>
+              <li>
+                <FormattedDate date={weatherData.date} />
+              </li>
               <li className="text-capitalize">{weatherData.description}</li>
             </ul>
           </div>
@@ -57,7 +60,9 @@ export default function Weather(props) {
               alt={weatherData.description}
             />
 
-            <span className="temperature">{weatherData.temperature}</span>
+            <span className="temperature">
+              {Math.round(weatherData.temperature)}
+            </span>
             <span className="units">°C</span>
           </div>
 
@@ -72,7 +77,8 @@ export default function Weather(props) {
     );
   } else {
     const apiKey = "6643c7326a4c2a38838264a28531d97e";
-    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${props.defaultCity}&key=${apiKey}&units=metric`;
+
+    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${props.defaultCity}&appid=${apiKey}&units=metric`;
     //https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longtitude}&appid=${apiKey}`;
 
     axios.get(apiUrl).then(handleResponse);
