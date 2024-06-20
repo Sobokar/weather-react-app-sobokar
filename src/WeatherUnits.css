@@ -1,0 +1,15 @@
+.unit {
+  color: rgb(32, 33, 36);
+  display: inline;
+  font-family: arial, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1;
+  position: relative;
+  top: -32px;
+  margin-left: 1px;
+}
+
+a {
+  text-decoration: none;
+}

@@ -22,7 +22,7 @@ export default function Weather(props) {
   }
 
   function handleSubmit(event) {
-    event.prevent.default();
+    event.preventDefault();
     search();
   }
   function changeCity(event) {
