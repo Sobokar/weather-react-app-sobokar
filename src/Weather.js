@@ -9,14 +9,13 @@ export default function Weather(props) {
   let [city, setCity] = useState(props.defaultCity);
 
   function handleResponse(response) {
-    console.log(response);
     setWeatherData({
       ready: true,
       city: response.data.name,
       description: response.data.weather[0].description,
       date: new Date(response.data.dt * 1000),
       temperature: response.data.main.temp,
-      iconUrl: `https://ssl.gstatic.com/onebox/weather/64/sunny.png`,
+      iconUrl: `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`,
       humidity: response.data.main.humidity,
       wind: response.data.wind.speed,
     });
