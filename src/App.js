@@ -7,7 +7,7 @@ export default function App() {
   return (
     <div className="App">
       <div className="container">
-        <Weather defaultCity="Kyiv" />
+        <Weather defaultCity="London" />
         <footer>
           This app is created by Yevheniia Sobokar and it is open-sourced on{" "}
           <a
